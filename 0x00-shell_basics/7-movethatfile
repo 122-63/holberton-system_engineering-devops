@@ -1,5 +1,8 @@
 #!/bin/bash
-mv /tmp/bety /tmp/holberton/
+mv /tmp/betty /tmp/holberton/
+
+
+
 
 
 
