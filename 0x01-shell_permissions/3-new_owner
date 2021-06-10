@@ -1,2 +1,2 @@
 #!/bin/bash
-chwn betty hello
+chown betty hello
