@@ -1,2 +1,3 @@
 #!/bin/bash
-echo $USER | echo "hello Myuser"
+echo $USER | echo "hello MyUselect 
+ser"
