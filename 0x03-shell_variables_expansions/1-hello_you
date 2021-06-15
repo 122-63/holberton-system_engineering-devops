@@ -1,3 +1,2 @@
 #!/bin/bash
-echo $USER | echo "hello MyUselect 
-ser"
+echo $USER | echo "hello MyUser"
