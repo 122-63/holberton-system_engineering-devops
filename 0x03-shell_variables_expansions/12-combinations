@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -e {a..z}{a..z}"\n"| grep -v oo | head -675 | grep "\S"
+echo -e {a..z}{a..z}"\n"| tr -d ' ' | grep -v oo | grep "\S"
