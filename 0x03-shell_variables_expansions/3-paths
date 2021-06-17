@@ -1,2 +1,2 @@
 #!/bin/bash
-grep -r ':/' $PATH | wc -l 
+echo $PATH | tr ':' '\n' | grep -c / 
