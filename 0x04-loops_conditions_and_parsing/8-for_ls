@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# display the content of the current directory in a list format
+# only the part of thr name after the firts dash
+# using for loop
+
+list=$(ls)
+
+for i in $list;
+do
+echo "$i" | cut -d '-' -f2
+done
