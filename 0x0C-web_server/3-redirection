@@ -1,14 +1,25 @@
 #!/usr/bin/env bash
-# Configure your Nginx serve
+# Redirect
+SU=$(whoami)
+DIR="/etc/nginx/sites-available/default"
+NEW_URL="https://www.youtube.com/watch?v=SQNtGoM3FVU&list=RDSQNtGoM3FVU&start_radio=1"
+OLD_URL="/redirect_me"
+REDIRECT="\tlocation ${OLD_URL} {\n\t\treturn 301 ${NEW_URL};\n\t}"
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo ufw allow 'Nginx HTTP'
-echo "Hello World" | sudo tee /var/www/html/index.html
-sudo service nginx start
-new_url="https://www.youtube.com/watch?v=QH2-TGUlwu4";
-redi="/redirect_me"
-content="\tlocation ${redi} {\n\t\treturn 301 ${new_url};\n\t"
-path="/etc/nginx/sites-available/default"
-sudo sed -i "/server_name_;/ a\\${content}" ${path}
-sudo service nginx restart
+if [[ "$SU" == "root" ]];
+then
+        SU="sudo"
+else
+        echo "You need run with sudo"
+        exit
+fi
+
+$SU apt-get -y update
+$SU apt-get -y install nginx
+
+
+$SU echo "Hello World" > ~/index.html
+$SU mkdir --parents /var/www/html/
+$SU cp ~/index.html /var/www/html/
+$SU sed -i "/server_name _;/ a\\${REDIRECT}" $DIR
+$SU service nginx restart
