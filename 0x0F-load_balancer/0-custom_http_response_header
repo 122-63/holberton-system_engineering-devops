@@ -30,4 +30,3 @@ $SU sed -i "/server_name _;/ a\\${REDIRECT}" $DIR
 sed -i "s/^server\s{/$ERROR404/1" $DIR
 sed -i "s/^server\s{/$SERVED_BY/1" $DIR
 $SU service nginx restart
-
