@@ -17,4 +17,4 @@ backend icap_pool
 	server 3469-web-01 35.243.241.97:80 check
 	server 3469-web-02 54.90.247.79:80 check" | sudo tee -a $path > /dev/null
 
-sudo service nginx restart
+sudo service haproxy restart
