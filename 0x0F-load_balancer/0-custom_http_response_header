@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Redirect
+
+SU=$(whoami)
+DIR="/etc/nginx/sites-available/default"
+NEW_URL="https://www.linkedin.com/in/andrea-angola-0892b1b7/"
+OLD_URL="/redirect_me"
+REDIRECT="\tlocation ${OLD_URL} {\n\t\treturn 301 ${NEW_URL};\n\t}"
+DIR_SERVER="/var/www/html/"
+ERROR404="server {\n\terror_page 404 \/error404.html;"
+SERVED_BY="server {\n\tadd_header X-Served-By \$hostname;"
+
+
+if [[ "$SU" == "root" ]];
+then
+        SU="sudo"
+else
+        echo "your need run with prefix sudo"
+        exit
+fi
+
+$SU usermod -aG $SU "$(whoami)"
+$SU apt-get -y update
+$SU apt-get -y install nginx
+
+$SU mkdir --parents "${DIR_SERVER}"
+$SU echo "Hello World" > "${DIR_SERVER}index.html"
+$SU echo "Ceci n'est pas une page" > "${DIR_SERVER}error404.html"
+$SU sed -i "/server_name _;/ a\\${REDIRECT}" $DIR
+sed -i "s/^server\s{/$ERROR404/1" $DIR
+sed -i "s/^server\s{/$SERVED_BY/1" $DIR
+$SU service nginx restart
+
