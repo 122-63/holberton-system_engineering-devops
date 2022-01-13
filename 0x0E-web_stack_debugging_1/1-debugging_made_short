@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Using what you did for task #0
-sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-sudo pkill --signal SIGHUP nginx
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+pkill --signal SIGHUP nginx
