@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#  make your fix short and sweet.
+# make your fix short and sweet.
 
 sudo pkill apache2
 sudo chmod 644 /etc/nginx/nginx.conf
